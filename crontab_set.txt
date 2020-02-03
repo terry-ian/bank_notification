@@ -7,27 +7,27 @@
 #30 8 * * *   分 时 日 月 周    * */2 * * *
 
 #主程式每天早上8：30 和 下午16：30 开始执行
-30 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-ICBC.py >> "/home/ec2-user/bank_log/ICBC-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
-32 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-BOC.py >> "/home/ec2-user/bank_log/BOC-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
-34 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-ABOC.py >> "/home/ec2-user/bank_log/ABOC-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
-36 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-CCB.py >> "/home/ec2-user/bank_log/CCB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
-38 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-CMB.py >> "/home/ec2-user/bank_log/CMB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
-40 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-CEB.py >> "/home/ec2-user/bank_log/CEB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
-42 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-CMBC.py >> "/home/ec2-user/bank_log/CMBC-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
-44 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-BCM.py >> "/home/ec2-user/bank_log/BCM-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
-46 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-CITIC.py >> "/home/ec2-user/bank_log/CITIC-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
-48 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-HB.py >> "/home/ec2-user/bank_log/HB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
-50 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-IB.py >> "/home/ec2-user/bank_log/IB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
-52 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-BOB.py >> "/home/ec2-user/bank_log/BOB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
-54 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-TRCB.py >> "/home/ec2-user/bank_log/TRCB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
-56 8,16 * * *  python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-BOIM.py >> "/home/ec2-user/bank_log/BOIM-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+30 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-ICBC.py >> "/home/ec2-user/bank_log/ICBC-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+32 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-BOC.py >> "/home/ec2-user/bank_log/BOC-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+34 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-ABOC.py >> "/home/ec2-user/bank_log/ABOC-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+36 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-CCB.py >> "/home/ec2-user/bank_log/CCB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+38 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-CMB.py >> "/home/ec2-user/bank_log/CMB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+40 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-CEB.py >> "/home/ec2-user/bank_log/CEB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+42 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-CMBC.py >> "/home/ec2-user/bank_log/CMBC-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+44 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-BCM.py >> "/home/ec2-user/bank_log/BCM-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+46 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-CITIC.py >> "/home/ec2-user/bank_log/CITIC-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+48 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-HB.py >> "/home/ec2-user/bank_log/HB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+50 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-IB.py >> "/home/ec2-user/bank_log/IB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+52 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-BOB.py >> "/home/ec2-user/bank_log/BOB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+54 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-TRCB.py >> "/home/ec2-user/bank_log/TRCB-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
+56 8,16 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/bank_file/bank_maintenance_notifications-BOIM.py >> "/home/ec2-user/bank_log/BOIM-$(date +"\%Y-\%m-\%d_\%H").log" 2>&1
 
 #telegram_bot 早上下午各执行一次
-* 9,17 * * *  python3 /home/ec2-user/bank_code/bank_proclamation/bank_file/telegram_bot_notification.py >> /home/ec2-user/bank_log/telegram_log/telegram.log 2>&1
+* 9,17 * * *  /usr/local/python3/bin/python3 /home/ec2-user/bank_proclamation/telegram_file/telegram_bot_notification.py >> /home/ec2-user/bank_log/telegram_log/telegram.log 2>&1
 
 
 
 #telegram_bot 接收讯息
-python3/home/ec2-user/bank_code/bank_proclamation/bank_file/telegram_bot_notification_respone.py >> /home/user/crawler/telegram_log/telegram.log 2>&1
+/usr/local/python3/bin/python3 /home/ec2-user/bank_code/bank_proclamation/bank_file/telegram_bot_notification_respone.py >> /home/user/crawler/telegram_log/telegram.log 2>&1
 
 
