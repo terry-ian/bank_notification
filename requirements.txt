@@ -1,11 +1,6 @@
 requests
 bs4
-re
 datetime
 pymysql
-urllib
 pandas 
-time
-random
 selenium 
-os
