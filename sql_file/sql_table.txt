@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS `webcrawler_bank`(
+   `id` INT UNSIGNED AUTO_INCREMENT,
+   `createtime` TIMESTAMP DEFAULT NOW() ,
+   `url` VARCHAR(265) NOT NULL,
+   `postdate` VARCHAR(40) NOT NULL ,
+   `bank` VARCHAR(40) NOT NULL,
+   `title` VARCHAR(265) NOT NULL,
+   `content` VARCHAR(20480) NOT NULL,
+   PRIMARY KEY (`url`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `notification_bank`(
+   `id` INT UNSIGNED AUTO_INCREMENT,
+   `createtime` TIMESTAMP DEFAULT NOW() ,
+   `updatetime` TIMESTAMP DEFAULT NOW() ON UPDATE NOW() ,
+   `bank` VARCHAR(40) NOT NULL,
+   `notes` VARCHAR(265) NOT NULL,
+   `url` VARCHAR(265) NOT NULL,
+   `status` int(8) NOT NULL,
+   PRIMARY KEY (`id`,`url`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
