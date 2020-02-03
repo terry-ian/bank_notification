@@ -4,3 +4,5 @@ datetime
 pymysql
 pandas 
 selenium 
+telegram
+telepot
