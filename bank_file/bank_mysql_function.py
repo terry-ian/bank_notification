@@ -13,11 +13,11 @@ def sql_webcrawler(url,postdate,bank,title,content):
     cursor.close() #关闭游标
     db.close() #关闭连接
     
-def sql_notification(bank,notes,url,status):
+def sql_notification(bank,title,notes,url,status):
     db = pymysql.Connect(host="remotemysql.com",user="giaX9JoXo3",passwd="VEm7Ky6FIB",port=3306,database="giaX9JoXo3",charset = 'utf8')
     cursor = db.cursor() # 创建一个游标对象
     # 插入语句
-    sql = "INSERT INTO notification_bank(bank,notes,url,status) "  "VALUES ('%s','%s','%s','%s')" % (bank,notes,url,status)
+    sql = "INSERT INTO notification_bank(bank,title,notes,url,status) "  "VALUES ('%s','%s','%s','%s','%s')" % (bank,title,notes,url,status) 
     try:
         cursor.execute(sql)  # 执行 SQL 插入语句
     except:
@@ -31,4 +31,3 @@ def select_sql(sqlcontent):
     sql_select = sqlcontent
     df = pd.read_sql(sql_select, con=db)
     return(df)
-
