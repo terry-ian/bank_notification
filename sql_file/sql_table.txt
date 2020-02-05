@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS `webcrawler_bank`(
    `bank` VARCHAR(40) NOT NULL,
    `title` VARCHAR(265) NOT NULL,
    `content` VARCHAR(20480) NOT NULL,
-   PRIMARY KEY (`url`)
+   PRIMARY KEY (id),
+   UNIQUE KEY unique_url (url)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `notification_bank`(
@@ -17,5 +18,9 @@ CREATE TABLE IF NOT EXISTS `notification_bank`(
    `notes` VARCHAR(265) NOT NULL,
    `url` VARCHAR(265) NOT NULL,
    `status` int(8) NOT NULL,
-   PRIMARY KEY (`id`,`url`)
+   PRIMARY KEY (id),
+   UNIQUE KEY unique_url (url)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+"insert into article (body, author, createDate) value(%s, %s, %s) on duplicate key update author=(author)"
