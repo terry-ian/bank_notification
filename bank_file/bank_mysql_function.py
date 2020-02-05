@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
+import pymysql
 def sql_webcrawler(url,postdate,bank,title,content):
     db = pymysql.Connect(host="remotemysql.com",user="giaX9JoXo3",passwd="VEm7Ky6FIB",port=3306,database="giaX9JoXo3",charset = 'utf8')
     cursor = db.cursor() # 创建一个游标对象
@@ -31,3 +32,4 @@ def select_sql(sqlcontent):
     sql_select = sqlcontent
     df = pd.read_sql(sql_select, con=db)
     return(df)
+
