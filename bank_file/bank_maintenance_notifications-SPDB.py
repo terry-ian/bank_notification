@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[56]:
+# In[69]:
 
 
 import requests
@@ -15,6 +15,10 @@ import time
 from urllib.parse import unquote
 from selenium import webdriver
 from bank_mysql_function import *    #sql帳密更改
+#代理
+#from fake_useragent import UserAgent
+#ua = UserAgent()
+#ua.random
 
 #反爬虫用 模拟使用者
 send_headers = {
@@ -24,7 +28,7 @@ send_headers = {
  "Accept-Language": "zh-CN,zh;q=0.8" }
 
 
-# In[57]:
+# In[70]:
 
 
 def getNewsDetail(notice,domainname,item,bankname):
@@ -50,12 +54,13 @@ def getNewsDetail(notice,domainname,item,bankname):
     return(result)
 
 
-# In[ ]:
+# In[71]:
 
 
 options = webdriver.ChromeOptions()   #options.add_argument('--headless')
 #options.add_argument("--start-maximized")
 browser = webdriver.Chrome(chrome_options=options)
+browser.set_page_load_timeout(60)
 browser.get('https://www.spdb.com.cn/home/sygg/')  #browser.implicitly_wait(10)
 time.sleep(5) 
 soup = BeautifulSoup(browser.page_source, "html.parser")
@@ -67,7 +72,7 @@ alldata=[]
 for i in range(noticelen):
     datanews=getNewsDetail(notice,domainname,i,"浦发银行")
     alldata.append(datanews)
-    time.sleep(2)
+    time.sleep(1)
 #关闭捞取数据
 browser.close()
 
