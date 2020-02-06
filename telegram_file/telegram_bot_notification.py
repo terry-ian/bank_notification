@@ -15,7 +15,7 @@ from telepot.loop import MessageLoop
 #-340019778   -364811652
 
 
-# In[4]:
+# In[14]:
 
 
 #while True:
@@ -38,7 +38,7 @@ else :
         value2=df.iloc[i, 4]
         value3=df.iloc[i, 5]
         value4=df.iloc[i, 6] #(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')  #时间加8小时 +datetime.timedelta(hours=8)
-        bot.sendMessage(chat_id='-364811652',text= '银行名称 : '+value1+ "\n" +'公告 : '+ value2 + "\n" +'重要讯息 : '+value3+ "\n"+'讯息网址 : ' +value4)
+        bot.sendMessage(chat_id='-364811652',text= '银行名称 : '+value1+ "\n" +'标题公告 : '+ value2 + "\n" +'重要讯息 : '+value3+ "\n"+'讯息网址 : ' +value4)
 
         my_cousor = db.cursor()   
         my_cousor.execute( "UPDATE notification_bank SET status = 1  WHERE id = " + str(df.iloc[i, 0]) )
