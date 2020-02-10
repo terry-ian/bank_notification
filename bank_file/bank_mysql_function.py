@@ -34,17 +34,17 @@ def sql_notification(bank,title,notes,url,status):
     db.close() #关闭连接
 
 #sql查询语句	
-def select_sql(sqlcontent):
+def sql_select(sqlcontent):
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database,charset = 'utf8')
-    sql_select = sqlcontent
-    df = pd.read_sql(sql_select, con=db)   
+    sql_text = sqlcontent
+    df = pd.read_sql(sql_text, con=db)   
     return(df)
 	
 #检查有无重复资料写入rowdata表
 def rowdata_db(alldata,noticelen,bankname):
     #检查数据表中有无重复资料和写入原始资料库中
     for i in reversed(range(noticelen)):
-        lastdata=select_sql("""select url from webcrawler_bank where bank='"""+bankname+"""'  and url ='"""+alldata[i]["urllink"]+"""' """)
+        lastdata=sql_select("""select url from webcrawler_bank where bank='"""+bankname+"""'  and url ='"""+alldata[i]["urllink"]+"""' """)
         if len(lastdata) ==0:
             sql_webcrawler(alldata[i]["urllink"],alldata[i]["time"],alldata[i]["bank"],alldata[i]["title"],alldata[i]["allcontent"])
 
@@ -70,7 +70,7 @@ def notification_db(alldata,noticelen,bankname):
     allwarningdatalen=len(allwarningdata)
     #检查数据表中有无重复资料和写入原始资料库中
     for i in reversed(range(allwarningdatalen)):
-        lastdatawarning=select_sql("""select url from notification_bank where bank='"""+bankname+"""' and url ='"""+allwarningdata[i]["url"]+"""' """)
+        lastdatawarning=sql_select("""select url from notification_bank where bank='"""+bankname+"""' and url ='"""+allwarningdata[i]["url"]+"""' """)
         if len(lastdatawarning) ==0:
             sql_notification(allwarningdata[i]['bank'],allwarningdata[i]['title'],allwarningdata[i]['notes'],allwarningdata[i]['url'],0)
 
