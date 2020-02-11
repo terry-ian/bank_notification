@@ -10,7 +10,7 @@ def sql_webcrawler(url,postdate,bank,title,content):
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database,charset = 'utf8')
     cursor = db.cursor() # 创建一个游标对象
     # 插入语句
-    sql = "INSERT INTO webcrawler_bank(url,postdate,bank,title,content) "  "VALUES ('%s','%s','%s','%s','%s')" % (url,postdate,bank,title,content)
+    sql = "INSERT INTO bank_webcrawler(url,postdate,bank,title,content) "  "VALUES ('%s','%s','%s','%s','%s')" % (url,postdate,bank,title,content)
     try:
         cursor.execute(sql)  # 执行 SQL 插入语句
     except:
@@ -24,7 +24,7 @@ def sql_notification(bank,title,notes,url,status):
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database,charset = 'utf8')
     cursor = db.cursor() # 创建一个游标对象
     # 插入语句
-    sql = "INSERT INTO notification_bank(bank,title,notes,url,status) "  "VALUES ('%s','%s','%s','%s','%s')" % (bank,title,notes,url,status)
+    sql = "INSERT INTO bank_notification(bank,title,notes,url,status) "  "VALUES ('%s','%s','%s','%s','%s')" % (bank,title,notes,url,status)
     try:
         cursor.execute(sql)  # 执行 SQL 插入语句
     except:
@@ -44,7 +44,7 @@ def sql_select(sqlcontent):
 def rowdata_db(alldata,noticelen,bankname):
     #检查数据表中有无重复资料和写入原始资料库中
     for i in reversed(range(noticelen)):
-        lastdata=sql_select("""select url from webcrawler_bank where bank='"""+bankname+"""'  and url ='"""+alldata[i]["urllink"]+"""' """)
+        lastdata=sql_select("""select url from bank_webcrawler where bank='"""+bankname+"""'  and url ='"""+alldata[i]["urllink"]+"""' """)
         if len(lastdata) ==0:
             sql_webcrawler(alldata[i]["urllink"],alldata[i]["time"],alldata[i]["bank"],alldata[i]["title"],alldata[i]["allcontent"])
 
@@ -70,7 +70,7 @@ def notification_db(alldata,noticelen,bankname):
     allwarningdatalen=len(allwarningdata)
     #检查数据表中有无重复资料和写入原始资料库中
     for i in reversed(range(allwarningdatalen)):
-        lastdatawarning=sql_select("""select url from notification_bank where bank='"""+bankname+"""' and url ='"""+allwarningdata[i]["url"]+"""' """)
+        lastdatawarning=sql_select("""select url from bank_notification where bank='"""+bankname+"""' and url ='"""+allwarningdata[i]["url"]+"""' """)
         if len(lastdatawarning) ==0:
             sql_notification(allwarningdata[i]['bank'],allwarningdata[i]['title'],allwarningdata[i]['notes'],allwarningdata[i]['url'],0)
 

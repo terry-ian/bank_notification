@@ -15,7 +15,7 @@ from bank_parameter import *
 #资料库 连线设定
 db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database,charset = 'utf8')
 #查詢目前數據庫中有無訊息要更新
-sql_select = "select * from notification_bank where status=0"
+sql_select = "select * from bank_notification where status=0"
 df = pd.read_sql(sql_select, con=db)
 
 #目前有多少数据未完成传送
@@ -34,7 +34,7 @@ else :
         bot.sendMessage(chat_id=tele_chatid ,text= '银行名称 : '+value1+ "\n" +'标题公告 : '+ value2 + "\n" +'重要讯息 : '+value3+ "\n"+'讯息网址 : ' +value4)
 
         my_cousor = db.cursor()   
-        my_cousor.execute( "UPDATE notification_bank SET status = 1  WHERE id = " + str(df.iloc[i, 0]) )
+        my_cousor.execute( "UPDATE bank_notification SET status = 1  WHERE id = " + str(df.iloc[i, 0]) )
         db.commit()
         my_cousor.close() #关闭游标
 

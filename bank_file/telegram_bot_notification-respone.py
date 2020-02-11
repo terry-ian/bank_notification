@@ -22,7 +22,7 @@ def handle(msg):
         select_sql(msg['text'])
 def select_sql(bank):
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_user,charset = 'utf8')
-    df = pd.read_sql("select * from notification_bank where bank='"+bank+"' order by id desc limit 1", con=db)
+    df = pd.read_sql("select * from bank_notification where bank='"+bank+"' order by id desc limit 1", con=db)
     value1=df.iloc[0, 3]
     value2=df.iloc[0, 4]
     value3=df.iloc[0, 5]

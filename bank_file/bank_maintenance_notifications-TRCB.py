@@ -55,11 +55,11 @@ def getNewsDetail(notice,domainname,item,bankname):
 
 
 #数据抓取
-res=requests.get("http://www.trcbank.com.cn/Class/cpxw/" ,timeout = 1000  ,headers=send_headers , verify=False) 
+res=requests.get("http://www.trcbank.com.cn/class/cpxw/index.htm" ,timeout = 1000  ,headers=send_headers , verify=False) 
 res.encoding = "gbk"
 soup=BeautifulSoup(res.content,'html.parser')
 domainname="http://www.trcbank.com.cn/Class/cpxw/"
-notice=soup.find('div',{"class": "newslist f14"}).findAll('td',{"colspan": "2"}) #.findAll('tr').findAll('tr')
+notice=soup.findAll('td',{"colspan": "2"}) 
 noticelen = len(notice)
 
 alldata=[]
