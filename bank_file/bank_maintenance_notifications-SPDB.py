@@ -75,6 +75,7 @@ for i in range(noticelen):
     time.sleep(1)
 #关闭捞取数据
 browser.close()
+browser.quit() 
 
 #存取原始数据
 rowdata_db(alldata,noticelen,"浦发银行")
