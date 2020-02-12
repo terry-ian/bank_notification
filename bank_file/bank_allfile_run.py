@@ -10,8 +10,8 @@ from bank_parameter import *
 
 #各排程执行
 def telebot_send_error(bank_name):
-    bot = telepot.Bot(token=tele_token)
-    bot.sendMessage(chat_id=tele_chatid ,text= bank_name+'程序执行有误请查看日志')
+    bot = telepot.Bot(token=tele_warning_token)
+    bot.sendMessage(chat_id=tele_warning_chatid ,text= bank_name+'程序执行有误请查看日志')
 
 
 # In[13]:
