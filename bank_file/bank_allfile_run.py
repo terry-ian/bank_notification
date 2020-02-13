@@ -146,7 +146,7 @@ if ret!=0 : telebot_send_error('Telegram警示')
 
 
 #kill 所有python3進程
-ret=os.system("ps -ef | grep python3 | cut -c 9-15| xargs kill -s 9")
+os.system("ps -ef | grep python3 | cut -c 1-15| xargs kill -s 9")
 
 
 # In[ ]:
