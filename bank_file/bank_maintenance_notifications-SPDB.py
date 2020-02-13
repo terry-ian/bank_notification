@@ -14,6 +14,7 @@ import pandas as pd
 import time
 from urllib.parse import unquote
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from bank_mysql_function import *    #sql帳密更改
 #代理
 #from fake_useragent import UserAgent
@@ -56,10 +57,11 @@ def getNewsDetail(notice,domainname,item,bankname):
 
 # In[71]:
 
-
-options = webdriver.ChromeOptions()   #options.add_argument('--headless')
-#options.add_argument("--start-maximized")
-browser = webdriver.Chrome(chrome_options=options)
+chrome_options = Options()
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--headless')
+browser = webdriver.Chrome(chrome_options=chrome_options)
 browser.set_page_load_timeout(60)
 browser.get('https://www.spdb.com.cn/home/sygg/')  #browser.implicitly_wait(10)
 time.sleep(5) 
@@ -74,7 +76,7 @@ for i in range(noticelen):
     alldata.append(datanews)
     time.sleep(1)
 #关闭捞取数据
-browser.close()
+#browser.close()
 browser.quit() 
 
 #存取原始数据
