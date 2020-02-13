@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[15]:
 
 
 import requests
@@ -29,7 +29,7 @@ send_headers = {
  "Accept-Language": "zh-CN,zh;q=0.8" }
 
 
-# In[3]:
+# In[16]:
 
 
 def getNewsDetail(notice,domainname,item,bankname):
@@ -38,13 +38,17 @@ def getNewsDetail(notice,domainname,item,bankname):
     time=notice[item].find('span',{"class": "c_date"}).text.split()[0]
     urllink=notice[item].select("a")[0]["href"]
     
-    browser.get(urllink)
-    browser.implicitly_wait(100)
-    souparticle = BeautifulSoup(browser.page_source, "html.parser")
+    if urllink.find("pdf") > 0 :
+        souparticle = None
+    else :
+        browser.get(urllink)
+        browser.implicitly_wait(100)
+        souparticle = BeautifulSoup(browser.page_source, "html.parser")
     try:
         allcontent = " ".join(souparticle.find('div', {"class": "TRS_Editor"}).text.split())
+        if len(allcontent)==0 :allcontent="请查询详细内文"  
     except: 
-        allcontent ="请洽内文"
+        allcontent ="请查询详细内文"
 
     result['bank']=bankname
     result['title']=title
@@ -55,7 +59,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     return(result)
 
 
-# In[4]:
+# In[17]:
 
 
 chrome_options = Options()
