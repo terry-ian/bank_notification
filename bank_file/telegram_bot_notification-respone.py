@@ -18,15 +18,19 @@ from telepot.delegate import pave_event_space, per_chat_id, create_open
 from bank_parameter import *
 #-340019778   -364811652
 
+
+# In[2]:
+
+
 def handle(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     print(content_type, chat_type, chat_id)
-    checkbanktext=['中国工商银行','中国银行','中国农业银行','中国建设银行','中国招商银行','中国光大银行','中国民生银行','交通银行','中信银行','华夏银行','兴业银行','浦发银行','北京银行','天津农商行','内蒙古银行'     ]             
+    checkbanktext=['中国工商银行','中国银行','中国农业银行','中国建设银行','中国招商银行','中国光大银行','中国民生银行','交通银行','中信银行','华夏银行','兴业银行','浦发银行','北京银行','天津农商银行','内蒙古银行'     ]             
     if any(re.findall('|'.join(checkbanktext), msg['text'])):
         select_sql(msg['text'])
     listtext=['目录','总类','查询']
     if any(re.findall('|'.join(listtext), msg['text'])):
-        bot.sendMessage(chat_id=tele_chatid ,text= "[可查询银行] : '中国工商银行','中国银行','中国农业银行','中国建设银行','中国招商银行','中国光大银行','中国民生银行','交通银行','中信银行','华夏银行','兴业银行','浦发银行','北京银行','天津农商行','内蒙古银行' " )
+        bot.sendMessage(chat_id=tele_chatid ,text= "[可查询银行] : '中国工商银行','中国银行','中国农业银行','中国建设银行','中国招商银行','中国光大银行','中国民生银行','交通银行','中信银行','华夏银行','兴业银行','浦发银行','北京银行','天津农商银行','内蒙古银行' " )
 def select_sql(bank):
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database ,charset = 'utf8')
     df = pd.read_sql("select * from "+db_table2+" where bank='"+bank+"' order by id desc limit 1", con=db)
