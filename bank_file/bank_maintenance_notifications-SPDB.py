@@ -66,7 +66,7 @@ chrome_options.add_argument('blink-settings=imagesEnabled=false') #不加载图�
 chrome_options.add_argument('--headless')                        #浏览器不提供可视化页面. linux下如果系统不支持可视化不加这条会启动失败
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
 chrome_options.add_argument("user-agent=" + user_agent)
-browser = webdriver.Chrome(chrome_options=chrome_options)
+browser = webdriver.Chrome(options=chrome_options)
 #browser.set_page_load_timeout(60)
 browser.get('https://www.spdb.com.cn/home/sygg/')  #browser.implicitly_wait(10)
 time.sleep(10) 
