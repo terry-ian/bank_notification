@@ -18,7 +18,7 @@ from bank_mysql_function import *
 #反爬虫用 模拟使用者
 send_headers = {
  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
- "Connection": "keep-alive",
+ "Connection": "close",
  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
  "Accept-Language": "zh-CN,zh;q=0.8" }
 
@@ -41,6 +41,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     try:
         remove_scripts(souparticle)
         allcontent = " ".join(souparticle.find('div', {"class": "main_content"}).text.split())
+        if len(allcontent)==0 :allcontent="请查询详细内文" 
     except: 
         allcontent ="请洽内文"
  
