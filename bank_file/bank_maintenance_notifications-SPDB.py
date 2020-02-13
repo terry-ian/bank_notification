@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[5]:
+# In[2]:
 
 
 import requests
@@ -29,7 +29,7 @@ send_headers = {
  "Accept-Language": "zh-CN,zh;q=0.8" }
 
 
-# In[6]:
+# In[3]:
 
 
 def getNewsDetail(notice,domainname,item,bankname):
@@ -55,12 +55,11 @@ def getNewsDetail(notice,domainname,item,bankname):
     return(result)
 
 
-# In[ ]:
+# In[4]:
 
 
 chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('window-size=1920x1080') #指定浏览器分辨率
 chrome_options.add_argument('--disable-gpu') #谷歌文档提到需要加上这个属性来规避bug
 chrome_options.add_argument('--hide-scrollbars') #隐藏滚动条, 应对一些特殊页面
 chrome_options.add_argument('blink-settings=imagesEnabled=false') #不加载图片, 提升速度
@@ -68,9 +67,9 @@ chrome_options.add_argument('--headless')                        #浏览器不�
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
 chrome_options.add_argument("user-agent=" + user_agent)
 browser = webdriver.Chrome(chrome_options=chrome_options)
-browser.set_page_load_timeout(60)
+#browser.set_page_load_timeout(60)
 browser.get('https://www.spdb.com.cn/home/sygg/')  #browser.implicitly_wait(10)
-time.sleep(5) 
+time.sleep(10) 
 soup = BeautifulSoup(browser.page_source, "html.parser")
 domainname="https://www.spdb.com.cn"
 notice=soup.find('div',{"class": "c_news_body common_list"}).findAll('ul')
@@ -80,7 +79,7 @@ alldata=[]
 for i in range(noticelen):
     datanews=getNewsDetail(notice,domainname,i,"浦发银行")
     alldata.append(datanews)
-    time.sleep(1)
+    time.sleep(2)
 #关闭捞取数据
 browser.close()
 browser.quit() 
