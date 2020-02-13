@@ -60,7 +60,7 @@ def getNewsDetail(notice,domainname,item,bankname):
 chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-dev-shm-usage')
-chrome_options.add_argument('--headless')
+#chrome_options.add_argument('--headless')
 browser = webdriver.Chrome(chrome_options=chrome_options)
 browser.set_page_load_timeout(60)
 browser.get('https://www.spdb.com.cn/home/sygg/')  #browser.implicitly_wait(10)
@@ -76,7 +76,7 @@ for i in range(noticelen):
     alldata.append(datanews)
     time.sleep(1)
 #关闭捞取数据
-#browser.close()
+browser.close()
 browser.quit() 
 
 #存取原始数据
