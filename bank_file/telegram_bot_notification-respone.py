@@ -18,10 +18,6 @@ from telepot.delegate import pave_event_space, per_chat_id, create_open
 from bank_parameter import *
 #-340019778   -364811652
 
-
-# In[2]:
-
-
 def handle(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     print(content_type, chat_type, chat_id)
@@ -47,11 +43,4 @@ print ('Listening ...')
 # Keep the program running.
 #while 1:
 #    time.sleep(10)
-
-
-# In[ ]:
-
-
-#mark_up = ReplyKeyboardMarkup(keyboard=[['1则消息'],['2则消息'],['3则消息']], one_time_keyboard=True)
-#bot.sendMessage(chat_id='-364811652',text= '请问要选择几则讯息', reply_markup=mark_up)
 
