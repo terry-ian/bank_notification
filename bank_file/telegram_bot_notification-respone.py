@@ -44,5 +44,5 @@ def select_sql(bank):
 bot = telepot.Bot(token=tele_token)
 MessageLoop(bot,handle).run_as_thread()
 # Keep the program running.
-time.sleep(86400)
+time.sleep(3600)
 
