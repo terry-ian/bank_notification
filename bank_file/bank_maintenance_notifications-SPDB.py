@@ -64,11 +64,12 @@ def getNewsDetail(notice,domainname,item,bankname):
 
 chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--window-size=1920,1080')
 chrome_options.add_argument('--disable-gpu') #谷歌文档提到需要加上这个属性来规避bug
 chrome_options.add_argument('--hide-scrollbars') #隐藏滚动条, 应对一些特殊页面
 chrome_options.add_argument('blink-settings=imagesEnabled=false') #不加载图片, 提升速度
 chrome_options.add_argument('--headless')                        #浏览器不提供可视化页面. linux下如果系统不支持可视化不加这条会启动失败
-chrome_options.add_argument('--disable-dev-shm-usage')
+#chrome_options.add_argument('--disable-dev-shm-usage')
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
 chrome_options.add_argument("user-agent=" + user_agent)
 browser = webdriver.Chrome(options=chrome_options)
