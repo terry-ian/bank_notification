@@ -15,6 +15,9 @@ import pandas as pd
 import time
 import random
 from bank_mysql_function import *
+
+# 增加重连次数
+requests.adapters.DEFAULT_RETRIES = 5  
 #反爬虫用 模拟使用者
 send_headers = {
  "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36",
