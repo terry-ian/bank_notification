@@ -10,7 +10,7 @@ db_table1='bank_webcrawler'
 db_table2='bank_notification'
 
 #telegram_parameter group
-tele_chatid='-364811652'
+tele_chatid='-340019778'
 tele_token='1020859504:AAEb-tLbaBjJvJqBsLCzCsStrgTlZNqXRR8'
 
 #warning message 
