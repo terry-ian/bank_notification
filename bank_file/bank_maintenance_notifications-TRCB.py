@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[7]:
+# In[17]:
 
 
 import requests
@@ -23,7 +23,22 @@ send_headers = {
 #random.choice(user_agent_list)
 
 
-# In[8]:
+# In[18]:
+
+
+def get_html(url,retry=5):
+    try:
+        resarticle = requests.get(url=url,headers=send_headers,timeout=1000)
+    except Exception as e:
+        if retry > 0:
+            get_html(url,retry-1)
+    else:
+        resarticle.encoding = 'gbk'
+        page_text = resarticle.text
+        return page_text
+
+
+# In[19]:
 
 
 def getNewsDetail(notice,domainname,item,bankname):
@@ -32,9 +47,8 @@ def getNewsDetail(notice,domainname,item,bankname):
     time=notice[item].find('font').text.split()[0]
     urllink=notice[item].select("a")[0]["href"]
     
-    resarticle=requests.get(urllink ,timeout = 1000 )
-    resarticle.encoding='gbk'
-    souparticle=BeautifulSoup(resarticle.text,'html.parser')
+    resarticletext=get_html(urllink)
+    souparticle=BeautifulSoup(resarticletext,'html.parser')
     try:
         allcontent = " ".join(souparticle.find('div', {"class": "newscontent"}).text.split())  
         if len(allcontent)==0 :allcontent="请查询详细内文"  
@@ -50,7 +64,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     return(result)
 
 
-# In[9]:
+# In[16]:
 
 
 #数据抓取
