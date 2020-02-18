@@ -14,6 +14,7 @@ import pandas as pd
 import time
 from bank_mysql_function import *
 
+requests.adapters.DEFAULT_RETRIES = 5  # 增加重连次数
 #反爬虫用 模拟使用者
 send_headers = {
  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
@@ -68,7 +69,7 @@ rowdata_db(alldata,noticelen,"中国农业银行")
 notification_db(alldata,noticelen,"中国农业银行")
 
 
-# In[ ]:
+# In[2]:
 
 
 
