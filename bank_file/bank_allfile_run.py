@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[12]:
+# In[3]:
 
 
 import os
@@ -13,6 +13,11 @@ from bank_parameter import *
 def telebot_send_error(bank_name):
     bot = telepot.Bot(token=tele_warning_token)
     bot.sendMessage(chat_id=tele_warning_chatid ,text= bank_name+'-程序执行有误请查看日志')
+#完成今日爬虫作业
+def telebot_finish():
+    timenow=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) 
+    bot = telepot.Bot(token=tele_warning_token)
+    bot.sendMessage(chat_id=tele_warning_chatid ,text= timenow+' - 银行爬虫作业完成')
 
 
 # In[2]:
@@ -141,6 +146,13 @@ if ret!=0 : telebot_send_error('浦发银行')
 #telegram 传送警示讯息
 ret=os.system("python3 ./bank_proclamation/bank_file/telegram_bot_notification.py > ./bank_proclamation/bank_log/telegram_bot.log 2>&1")
 if ret!=0 : telebot_send_error('Telegram警示')
+
+
+# In[6]:
+
+
+#爬虫完成送出通知
+telebot_finish()
 
 
 # In[ ]:
