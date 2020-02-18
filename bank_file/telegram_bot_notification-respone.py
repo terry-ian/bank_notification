@@ -28,7 +28,7 @@ def handle(msg):
     checkbanktext=['中国工商银行','中国银行','中国农业银行','中国建设银行','中国招商银行','中国光大银行','中国民生银行','交通银行','中信银行','华夏银行','兴业银行','浦发银行','北京银行','天津农商银行','内蒙古银行'     ]             
     if any(re.findall('|'.join(checkbanktext), msg['text'])):
         select_sql(msg['text'])
-    listtext=['目录','总类','查询','银行']
+    listtext=['目录','总类','查询','银行','国行','工行','招行','建行']
     if any(re.findall('|'.join(listtext), msg['text'])):
         bot.sendMessage(chat_id=tele_chatid ,text= "[可查询银行] : '中国工商银行','中国银行','中国农业银行','中国建设银行','中国招商银行','中国光大银行','中国民生银行','交通银行','中信银行','华夏银行','兴业银行','浦发银行','北京银行','天津农商银行','内蒙古银行' " )
 def select_sql(bank):
