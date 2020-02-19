@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[11]:
+# In[1]:
 
 
 import pymysql
@@ -25,17 +25,18 @@ from bank_parameter import *
 def handle(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     if str(chat_id) == tele_chatid :
-        checkbanktext=['中国工商银行','中国银行','中国农业银行','中国建设银行','中国招商银行','中国光大银行','中国民生银行','交通银行','中信银行','华夏银行','兴业银行','浦发银行','北京银行','天津农商银行','内蒙古银行'     ]             
-        if any(re.findall('|'.join(checkbanktext), msg['text'])):
-            select_sql(msg['text'])
-        
-        listtext=['目录','银行总类','查询']
-        if any(re.findall('|'.join(listtext), msg['text'])):
-            bot.sendMessage(chat_id=tele_chatid ,text= "[可查询银行] : '中国工商银行','中国银行','中国农业银行','中国建设银行','中国招商银行','中国光大银行','中国民生银行','交通银行','中信银行','华夏银行','兴业银行','浦发银行','北京银行','天津农商银行','内蒙古银行' " )
-        
+        listtext=['目录','银行总类','查询','建行','工行','招行']
+        checkbanktext=['中国工商银行','中国银行','中国农业银行','中国建设银行','中国招商银行','中国光大银行','中国民生银行','交通银行','中信银行','华夏银行','兴业银行','浦发银行','北京银行','天津农商银行','内蒙古银行'     ] 
         totaltext=['清单','近日','数据']
-        if any(re.findall('|'.join(totaltext), msg['text'])):
+        
+        if any(re.findall('|'.join(listtext), msg['text'])):
+            bot.sendMessage(chat_id=tele_chatid ,text= "[可查询银行] : '中国工商银行','中国银行','中国农业银行','中国建设银行','中国招商银行','中国光大银行','中国民生银行','交通银行','中信银行','华夏银行','兴业银行','浦发银行','北京银行','天津农商银行','内蒙古银行' " )            
+        elif any(re.findall('|'.join(checkbanktext), msg['text'])):
+            select_sql(msg['text'])
+        elif any(re.findall('|'.join(totaltext), msg['text'])):
             list_sql()
+        else:
+            bot.sendMessage(chat_id=tele_chatid,text="听不太懂您说的请查询公告")
 
 def select_sql(bank):
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database ,charset = 'utf8')
