@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[17]:
+# In[1]:
 
 
 import requests
@@ -16,32 +16,16 @@ import time
 import random
 from bank_mysql_function import *
 
-# 增加重连次数
-requests.adapters.DEFAULT_RETRIES = 5  
+#增加重连次数
+requests.adapters.DEFAULT_RETRIES = 10  
 #反爬虫用 模拟使用者
 send_headers = {
- "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36",
- "Connection": "close" 
+ "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"
 }
 #random.choice(user_agent_list)
 
 
-# In[18]:
-
-
-def get_html(url,retry=5):
-    try:
-        resarticle = requests.get(url=url,headers=send_headers,timeout=1000)
-    except Exception as e:
-        if retry > 0:
-            get_html(url,retry-1)
-    else:
-        resarticle.encoding = 'gbk'
-        page_text = resarticle.text
-        return page_text
-
-
-# In[19]:
+# In[2]:
 
 
 def getNewsDetail(notice,domainname,item,bankname):
@@ -50,8 +34,9 @@ def getNewsDetail(notice,domainname,item,bankname):
     time=notice[item].find('font').text.split()[0]
     urllink=notice[item].select("a")[0]["href"]
     
-    resarticletext=get_html(urllink)
-    souparticle=BeautifulSoup(resarticletext,'html.parser')
+    resarticle=requests.get(urllink ,timeout = 1000  ,headers=send_headers)
+    resarticle.encoding='utf-8'
+    souparticle=BeautifulSoup(resarticle.text,'html.parser')
     try:
         allcontent = " ".join(souparticle.find('div', {"class": "newscontent"}).text.split())  
         if len(allcontent)==0 :allcontent="请查询详细内文"  
@@ -67,7 +52,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     return(result)
 
 
-# In[16]:
+# In[3]:
 
 
 #数据抓取
