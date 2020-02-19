@@ -24,7 +24,7 @@ def telebot_finish():
 
 
 #中国农业银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-ABOC.py > ./bank_proclamation/bank_log/ABOC.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-ABOC.py > ./bank_notification/bank_log/ABOC.log 2>&1")
 if ret!=0 : telebot_send_error('中国农业银行')
 
 
@@ -32,7 +32,7 @@ if ret!=0 : telebot_send_error('中国农业银行')
 
 
 #交通银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-BCM.py > ./bank_proclamation/bank_log/BCM.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-BCM.py > ./bank_notification/bank_log/BCM.log 2>&1")
 if ret!=0 : telebot_send_error('交通银行')
 
 
@@ -40,7 +40,7 @@ if ret!=0 : telebot_send_error('交通银行')
 
 
 #北京银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-BOB.py > ./bank_proclamation/bank_log/BOB.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-BOB.py > ./bank_notification/bank_log/BOB.log 2>&1")
 if ret!=0 : telebot_send_error('北京银行')
 
 
@@ -48,7 +48,7 @@ if ret!=0 : telebot_send_error('北京银行')
 
 
 #中国银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-BOC.py > ./bank_proclamation/bank_log/BOC.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-BOC.py > ./bank_notification/bank_log/BOC.log 2>&1")
 if ret!=0 : telebot_send_error('中国银行')
 
 
@@ -56,7 +56,7 @@ if ret!=0 : telebot_send_error('中国银行')
 
 
 #内蒙古银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-BOIM.py > ./bank_proclamation/bank_log/BOIM.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-BOIM.py > ./bank_notification/bank_log/BOIM.log 2>&1")
 if ret!=0 : telebot_send_error('内蒙古银行')
 
 
@@ -64,7 +64,7 @@ if ret!=0 : telebot_send_error('内蒙古银行')
 
 
 #中国建设银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-CCB.py > ./bank_proclamation/bank_log/CCB.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-CCB.py > ./bank_notification/bank_log/CCB.log 2>&1")
 if ret!=0 : telebot_send_error('中国建设银行')
 
 
@@ -72,7 +72,7 @@ if ret!=0 : telebot_send_error('中国建设银行')
 
 
 #中国光大银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-CEB.py > ./bank_proclamation/bank_log/CEB.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-CEB.py > ./bank_notification/bank_log/CEB.log 2>&1")
 if ret!=0 : telebot_send_error('中国光大银行')
 
 
@@ -80,7 +80,7 @@ if ret!=0 : telebot_send_error('中国光大银行')
 
 
 #中信银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-CITIC.py > ./bank_proclamation/bank_log/CITIC.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-CITIC.py > ./bank_notification/bank_log/CITIC.log 2>&1")
 if ret!=0 : telebot_send_error('中信银行')
 
 
@@ -88,7 +88,7 @@ if ret!=0 : telebot_send_error('中信银行')
 
 
 #中国招商银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-CMB.py > ./bank_proclamation/bank_log/CMB.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-CMB.py > ./bank_notification/bank_log/CMB.log 2>&1")
 if ret!=0 : telebot_send_error('中国招商银行')
 
 
@@ -96,7 +96,7 @@ if ret!=0 : telebot_send_error('中国招商银行')
 
 
 #中国民生银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-CMBC.py > ./bank_proclamation/bank_log/CMBC.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-CMBC.py > ./bank_notification/bank_log/CMBC.log 2>&1")
 if ret!=0 : telebot_send_error('中国民生银行')
 
 
@@ -104,7 +104,7 @@ if ret!=0 : telebot_send_error('中国民生银行')
 
 
 #华夏银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-HB.py > ./bank_proclamation/bank_log/HB.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-HB.py > ./bank_notification/bank_log/HB.log 2>&1")
 if ret!=0 : telebot_send_error('华夏银行')
 
 
@@ -112,7 +112,7 @@ if ret!=0 : telebot_send_error('华夏银行')
 
 
 #兴业银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-IB.py > ./bank_proclamation/bank_log/IB.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-IB.py > ./bank_notification/bank_log/IB.log 2>&1")
 if ret!=0 : telebot_send_error('兴业银行')
 
 
@@ -120,7 +120,7 @@ if ret!=0 : telebot_send_error('兴业银行')
 
 
 #中国工商银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-ICBC.py > ./bank_proclamation/bank_log/ICBC.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-ICBC.py > ./bank_notification/bank_log/ICBC.log 2>&1")
 if ret!=0 : telebot_send_error('中国工商银行')
 
 
@@ -128,7 +128,7 @@ if ret!=0 : telebot_send_error('中国工商银行')
 
 
 #天津农商行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-TRCB.py > ./bank_proclamation/bank_log/TRCB.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-TRCB.py > ./bank_notification/bank_log/TRCB.log 2>&1")
 if ret!=0 : telebot_send_error('天津农商银行')
 
 
@@ -136,7 +136,7 @@ if ret!=0 : telebot_send_error('天津农商银行')
 
 
 #浦发银行
-ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-SPDB.py > ./bank_proclamation/bank_log/SPDB.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/bank_maintenance_notifications-SPDB.py > ./bank_notification/bank_log/SPDB.log 2>&1")
 if ret!=0 : telebot_send_error('浦发银行')
 
 
@@ -144,7 +144,7 @@ if ret!=0 : telebot_send_error('浦发银行')
 
 
 #telegram 传送警示讯息
-ret=os.system("python3 ./bank_proclamation/bank_file/telegram_bot_notification.py > ./bank_proclamation/bank_log/telegram_bot.log 2>&1")
+ret=os.system("python3 ./bank_notification/bank_file/telegram_bot_notification.py > ./bank_notification/bank_log/telegram_bot.log 2>&1")
 if ret!=0 : telebot_send_error('Telegram警示')
 
 
