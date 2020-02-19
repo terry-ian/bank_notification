@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[4]:
+# In[12]:
 
 
 import requests
@@ -26,7 +26,7 @@ send_headers = {
 #random.choice(user_agent_list)
 
 
-# In[5]:
+# In[13]:
 
 
 def getNewsDetail(notice,domainname,item,bankname):
@@ -53,27 +53,31 @@ def getNewsDetail(notice,domainname,item,bankname):
     return(result)
 
 
-# In[ ]:
+# In[14]:
 
 
 #数据抓取
-res=requests.get("http://www.trcbank.com.cn/class/cpxw/index.htm" ,timeout = 1000  ,headers=send_headers , verify=False) 
+res=requests.get("http://www.trcbank.com.cn/class/cpxw/index.htm" ,timeout = 1000  ,headers=send_headers) 
 res.encoding = "gbk"
 soup=BeautifulSoup(res.content,'html.parser')
 domainname="http://www.trcbank.com.cn/Class/cpxw/"
-notice=soup.findAll('td',{"colspan": "2"}) 
+notice=soup.findAll('div',{"class": "newslist f14"})
 noticelen = len(notice)
 
 alldata=[]
 for i in range(noticelen):
     datanews=getNewsDetail(notice,domainname,i,"天津农商银行")
     alldata.append(datanews)
-    print(i)
     time.sleep(2)
 
 #存取原始数据
 rowdata_db(alldata,noticelen,"天津农商银行")
 #存取警示数据
 notification_db(alldata,noticelen,"天津农商银行")
+
+
+# In[ ]:
+
+
 
 
