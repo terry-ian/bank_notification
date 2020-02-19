@@ -1,4 +1,4 @@
-# Bank_Proclamation
+# Bank_Notification
 
 銀行維護公告爬取通知
 
