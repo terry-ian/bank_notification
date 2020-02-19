@@ -54,15 +54,18 @@ def list_sql():
     if len(df)>0:
         data30=[]
         for i in range(len(df)):
-            datashow=df.iloc[i, 0]+":"+df.iloc[i, 1]+"-"+df.iloc[i, 2]+" "+"\n"+" "+df.iloc[i, 3]+" "+"\n"
+            datashow=df.iloc[i, 0]+":"+df.iloc[i, 1]+"-"+df.iloc[i, 2]+"-"+df.iloc[i, 3]+" "+"\n"+" "+"\n"
             data30.append(datashow)
-        bot.sendMessage(chat_id=tele_chatid,text='[最近30天内发布消息]'+"\n"+ "\n"+  "".join(data30))
+        bot.sendMessage(chat_id=tele_chatid,text='[最近30天内发布消息]'+"\n"+"\n"+  "".join(data30))
     
 # 给出回硬
 bot = telepot.Bot(token=tele_token)
 MessageLoop(bot,handle).run_as_thread()
 # Keep the program running.
 time.sleep(3600)
+
+
+# In[ ]:
 
 
 
