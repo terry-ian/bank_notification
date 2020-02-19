@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
+# In[10]:
 
 
 import os
@@ -129,7 +129,7 @@ if ret!=0 : telebot_send_error('中国工商银行')
 
 #天津农商行
 ret=os.system("python3 ./bank_proclamation/bank_file/bank_maintenance_notifications-TRCB.py > ./bank_proclamation/bank_log/TRCB.log 2>&1")
-if ret!=0 : telebot_send_error('天津农商行')
+if ret!=0 : telebot_send_error('天津农商银行')
 
 
 # In[11]:
