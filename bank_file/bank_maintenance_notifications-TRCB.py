@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[4]:
 
 
 import requests
@@ -20,15 +20,13 @@ from bank_mysql_function import *
 requests.adapters.DEFAULT_RETRIES = 10
 #反爬虫用 模拟使用者
 send_headers = {
- "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36",
- "Connection": "close",
- "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
- "Accept-Language": "zh-CN,zh;q=0.8"
+ "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36",
+ "Connection": "close"
 }
 #random.choice(user_agent_list)
 
 
-# In[2]:
+# In[5]:
 
 
 def getNewsDetail(notice,domainname,item,bankname):
@@ -70,16 +68,12 @@ alldata=[]
 for i in range(noticelen):
     datanews=getNewsDetail(notice,domainname,i,"天津农商银行")
     alldata.append(datanews)
+    print(i)
     time.sleep(2)
 
 #存取原始数据
 rowdata_db(alldata,noticelen,"天津农商银行")
 #存取警示数据
 notification_db(alldata,noticelen,"天津农商银行")
-
-
-# In[ ]:
-
-
 
 
