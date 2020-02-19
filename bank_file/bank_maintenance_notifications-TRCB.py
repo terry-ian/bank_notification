@@ -17,10 +17,13 @@ import random
 from bank_mysql_function import *
 
 #增加重连次数
-requests.adapters.DEFAULT_RETRIES = 10  
+requests.adapters.DEFAULT_RETRIES = 10
 #反爬虫用 模拟使用者
 send_headers = {
- "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"
+ "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36",
+ "Connection": "close",
+ "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+ "Accept-Language": "zh-CN,zh;q=0.8"
 }
 #random.choice(user_agent_list)
 
@@ -52,7 +55,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     return(result)
 
 
-# In[3]:
+# In[ ]:
 
 
 #数据抓取
