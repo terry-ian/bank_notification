@@ -20,11 +20,11 @@ def sql_webcrawler(url,postdate,bank,title,content):
     db.close() #关闭连接
 
 #sql写入警示表格中语句	
-def sql_notification(bank,title,notes,url,status):
+def sql_notification(url,postdate,bank,title,notes,status):
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database,charset = 'utf8')
     cursor = db.cursor() # 创建一个游标对象
     # 插入语句
-    sql = "INSERT INTO bank_notification(bank,title,notes,url,status) "  "VALUES ('%s','%s','%s','%s','%s')" % (bank,title,notes,url,status)
+    sql = "INSERT INTO bank_notification(url,postdate,bank,title,notes,status) "  "VALUES ('%s','%s','%s','%s','%s','%s')" % (url,postdate,bank,title,notes,status)
     try:
         cursor.execute(sql)  # 执行 SQL 插入语句
     except:
@@ -61,10 +61,12 @@ def notification_db(alldata,noticelen,bankname):
             else:
                 stoptime=alldata[check]['allcontent'].find( re.findall('|'.join(checkcontenttext), alldata[check]['allcontent'])[0] )
                 noticetext=alldata[check]['allcontent'][stoptime:stoptime+50].split("。" )[0] if len(alldata[check]['allcontent'][stoptime:stoptime+50].split("。" )[0]) < len(alldata[check]['allcontent'][stoptime:stoptime+50].split("，" )[0]) else alldata[check]['allcontent'][stoptime:stoptime+50].split("，" )[0] 
+            
+            warningdata['url']=alldata[check]['urllink']
+            warningdata['postdate']=alldata[check]['time']
             warningdata['bank']=bankname
             warningdata['title']=alldata[check]['title']
             warningdata['notes']=noticetext
-            warningdata['url']=alldata[check]['urllink']
             allwarningdata.append(warningdata)
     
     allwarningdatalen=len(allwarningdata)
@@ -72,5 +74,5 @@ def notification_db(alldata,noticelen,bankname):
     for i in reversed(range(allwarningdatalen)):
         lastdatawarning=sql_select("""select url from bank_notification where bank='"""+bankname+"""' and url ='"""+allwarningdata[i]["url"]+"""' """)
         if len(lastdatawarning) ==0:
-            sql_notification(allwarningdata[i]['bank'],allwarningdata[i]['title'],allwarningdata[i]['notes'],allwarningdata[i]['url'],0)
+            sql_notification(allwarningdata[i]['url'],allwarningdata[i]['postdate'],allwarningdata[i]['bank'],allwarningdata[i]['title'],allwarningdata[i]['notes'],0)
 
