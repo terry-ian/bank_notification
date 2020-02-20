@@ -37,7 +37,8 @@ def sql_notification(url,postdate,bank,title,notes,status):
 def sql_select(sqlcontent):
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database,charset = 'utf8')
     sql_text = sqlcontent
-    df = pd.read_sql(sql_text, con=db)   
+    df = pd.read_sql(sql_text, con=db)  
+    db.close() #关闭连接
     return(df)
 	
 #检查有无重复资料写入rowdata表
