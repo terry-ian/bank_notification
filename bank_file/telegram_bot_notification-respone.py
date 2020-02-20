@@ -51,11 +51,11 @@ def list_sql():
     today = datetime.date.today()
     beforeday = today + datetime.timedelta(days=-30)
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database ,charset = 'utf8')
-    df = pd.read_sql("select postdate,bank,title,url from "+db_table2+" where postdate  BETWEEN STR_TO_DATE('"+str(beforeday)+"','%Y-%m-%d') AND STR_TO_DATE('"+str(today)+"','%Y-%m-%d')", con=db)
+    df = pd.read_sql("select postdate,bank,title,notes,url from "+db_table2+" where postdate  BETWEEN STR_TO_DATE('"+str(beforeday)+"','%Y-%m-%d') AND STR_TO_DATE('"+str(today)+"','%Y-%m-%d')", con=db)
     if len(df)>0:
         data30=[]
         for i in range(len(df)):
-            datashow=df.iloc[i, 0]+":"+df.iloc[i, 1]+"-"+df.iloc[i, 2]+"-"+df.iloc[i, 3]+" "+"\n"+" "+"\n"
+            datashow=df.iloc[i, 0]+": "+df.iloc[i, 1]+"-"+df.iloc[i, 2]+"-"+df.iloc[i, 3]+"-"+df.iloc[i, 4]+" "+"\n"+" "+"\n"
             data30.append(datashow)
         bot.sendMessage(chat_id=tele_chatid,text='[最近30天内发布消息]'+"\n"+"\n"+  "".join(data30))
     
