@@ -36,7 +36,7 @@ def handle(msg):
         elif any(re.findall('|'.join(totaltext), msg['text'])):
             list_sql()
         else:
-            bot.sendMessage(chat_id=tele_chatid,text="听不太懂您说的请看功能\n\n银行公告系统会通知维修日期也可以查询各银行维修时间和30天内维修公告\n\n可查询清单：关键字-目录\n可查询银行：关键字-银行名称\n可查询近况：关键字-清单")
+            bot.sendMessage(chat_id=tele_chatid,text="听不太懂您说的请看功能\n\n银行公告系统会通知维修日期也可以查询各银行维修时间和30天内维修公告\n\n可查询银行清单：关键字-目录\n可查询银行资讯：关键字-(银行名称)\n可查询银行近况：关键字-清单")
 
 def select_sql(bank):
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database ,charset = 'utf8')
