@@ -14,13 +14,15 @@ import pymysql
 from urllib.parse import unquote
 import pandas as pd
 import time
+import random
+from fake_useragent import UserAgent
 from bank_mysql_function import *
-
+ua = UserAgent() 
 # 增加重连次数
-requests.adapters.DEFAULT_RETRIES = 5  
+requests.adapters.DEFAULT_RETRIES = 5 
 #反爬虫用 模拟使用者
 send_headers = {
- "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
+ "User-Agent": ua.random,
  "Connection": "close"
 }
 

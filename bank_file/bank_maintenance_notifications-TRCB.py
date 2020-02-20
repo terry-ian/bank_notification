@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[12]:
+# In[4]:
 
 
 import requests
@@ -14,19 +14,21 @@ from urllib.parse import unquote
 import pandas as pd
 import time
 import random
+from fake_useragent import UserAgent
 from bank_mysql_function import *
+ua = UserAgent() 
 
 #增加重连次数
-requests.adapters.DEFAULT_RETRIES = 10
+requests.adapters.DEFAULT_RETRIES = 5
 #反爬虫用 模拟使用者
 send_headers = {
- "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36",
+ "User-Agent": ua.random,
  "Connection": "close"
 }
 #random.choice(user_agent_list)
 
 
-# In[13]:
+# In[5]:
 
 
 def getNewsDetail(notice,domainname,item,bankname):
@@ -36,7 +38,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     urllink=notice[item].select("a")[0]["href"]
     
     resarticle=requests.get(urllink ,timeout = 1000  ,headers=send_headers)
-    resarticle.encoding='utf-8'
+    resarticle.encoding='gbk'
     souparticle=BeautifulSoup(resarticle.text,'html.parser')
     try:
         allcontent = " ".join(souparticle.find('div', {"class": "newscontent"}).text.split())  
@@ -53,7 +55,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     return(result)
 
 
-# In[14]:
+# In[6]:
 
 
 #数据抓取
