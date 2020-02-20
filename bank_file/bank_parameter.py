@@ -1,11 +1,11 @@
 #手动设置参数文件
 
 #mysql_parameter
-db_host='remotemysql.com'
-db_user='giaX9JoXo3'
-db_passwd='VEm7Ky6FIB'
+db_host='sql12.freesqldatabase.com'
+db_user='sql12323730'
+db_passwd='smdt6QLppJ'
 db_port=3306
-db_database='giaX9JoXo3'
+db_database='sql12323730'
 db_table1='bank_webcrawler'
 db_table2='bank_notification'
 
