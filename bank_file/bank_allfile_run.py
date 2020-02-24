@@ -15,7 +15,7 @@ def run_python_file(cmdtext,bankname,bankcode):
     if ret!=0 : telebot_send_error(bankname,bankcode)
 #各排程执行
 def telebot_send_error(bank_name,bank_code):
-    f = open("./bank_notification/bank_log/"+bank_code+".log.txt", "r")
+    f = open("./bank_notification/bank_log/"+bank_code+".log", "r")
     bot = telepot.Bot(token=tele_warning_token)
     bot.sendMessage(chat_id=tele_warning_chatid ,text= bank_name+'-程序执行有误log档案如下\n'+ f.read())
 #完成今日爬虫作业
