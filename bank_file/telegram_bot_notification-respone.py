@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 
 import pymysql
@@ -30,7 +30,7 @@ def handle(msg):
         checkbanktext=['中国工商银行','中国银行','中国农业银行','中国建设银行','中国招商银行','中国光大银行','中国民生银行','交通银行','中信银行','华夏银行','兴业银行','浦发银行','北京银行','天津农商银行','内蒙古银行'     ] 
         totaltext=['近30天银行维修公告']
         if any(re.findall('|'.join(listtext), msg['text'])):
-            bot.sendMessage(chat_id=tele_chatid ,text= "银行维修公告系统\n定时通知维修日期也可以查询各银行维修时间和30天内维修公告\n如要查询请问安")            
+            bot.sendMessage(chat_id=tele_chatid ,text= "银行维修公告系统：\n系统定时通知维修日期也可以查询各银行维修时间和30天内维修公告,如要查询请问安")            
         elif any(re.findall('|'.join(checkbanktext), msg['text'])):
             select_sql(msg['text'])
         elif any(re.findall('|'.join(totaltext), msg['text'])):
@@ -73,8 +73,6 @@ MessageLoop(bot,handle).run_as_thread()
 # Keep the program running.
 time.sleep(3600)
 
-
-# In[ ]:
 
 
 
