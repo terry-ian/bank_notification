@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[2]:
 
 
 import pymysql
@@ -15,6 +15,7 @@ import telepot
 from telepot.loop import MessageLoop
 from telepot.namedtuple import ReplyKeyboardMarkup
 from telepot.delegate import pave_event_space, per_chat_id, create_open
+from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
 from bank_parameter import *
 #-340019778   -364811652
 
@@ -25,19 +26,26 @@ from bank_parameter import *
 def handle(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     if str(chat_id) == tele_chatid :
-        listtext=['目录','银行总类','查询','建行','工行','招行']
+        listtext=['help']
         checkbanktext=['中国工商银行','中国银行','中国农业银行','中国建设银行','中国招商银行','中国光大银行','中国民生银行','交通银行','中信银行','华夏银行','兴业银行','浦发银行','北京银行','天津农商银行','内蒙古银行'     ] 
-        totaltext=['清单','近日','数据']
-        
+        totaltext=['近30天银行维修公告']
         if any(re.findall('|'.join(listtext), msg['text'])):
-            bot.sendMessage(chat_id=tele_chatid ,text= "[可查询银行] : '中国工商银行','中国银行','中国农业银行','中国建设银行','中国招商银行','中国光大银行','中国民生银行','交通银行','中信银行','华夏银行','兴业银行','浦发银行','北京银行','天津农商银行','内蒙古银行' " )            
+            bot.sendMessage(chat_id=tele_chatid ,text= "银行维修公告系统\n定时通知维修日期也可以查询各银行维修时间和30天内维修公告\n如要查询请问安")            
         elif any(re.findall('|'.join(checkbanktext), msg['text'])):
             select_sql(msg['text'])
         elif any(re.findall('|'.join(totaltext), msg['text'])):
             list_sql()
         else:
-            bot.sendMessage(chat_id=tele_chatid,text="听不太懂您说的请看功能\n\n银行公告系统会通知维修日期也可以查询各银行维修时间和30天内维修公告\n\n可查询银行清单：关键字-目录\n可查询银行资讯：关键字-(银行名称)\n可查询银行近况：关键字-清单")
-
+            markup = ReplyKeyboardMarkup(
+            keyboard=[[KeyboardButton(text='近30天银行维修公告')],
+                [KeyboardButton(text='中国工商银行'),KeyboardButton(text='中国银行'),KeyboardButton(text='中国农业银行')],
+                [KeyboardButton(text='中国建设银行'),KeyboardButton(text='中国招商银行'),KeyboardButton(text='中国光大银行')],
+                [KeyboardButton(text='中国民生银行'),KeyboardButton(text='交通银行'),KeyboardButton(text='中信银行')],
+                [KeyboardButton(text='华夏银行'),KeyboardButton(text='兴业银行'),KeyboardButton(text='浦发银行')],
+                [KeyboardButton(text='北京银行'),KeyboardButton(text='天津农商银行'),KeyboardButton(text='内蒙古银行')]]
+                )
+            bot.sendMessage(chat_id=tele_chatid , text='请点选您要查询功能或银行', reply_markup=markup)
+    
 def select_sql(bank):
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database ,charset = 'utf8')
     df = pd.read_sql("select * from "+db_table2+" where bank='"+bank+"' order by id desc limit 1", con=db)
