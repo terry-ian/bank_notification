@@ -63,7 +63,7 @@ def list_sql():
     if len(df)>0:
         data30=[]
         for i in range(len(df)):
-            datashow=df.iloc[i, 0]+": "+df.iloc[i, 1]+"-"+df.iloc[i, 2]+"-"+df.iloc[i, 3]+"-"+df.iloc[i, 4]+" "+"\n"+" "+"\n"
+            datashow=str(i+1)+". ["+df.iloc[i, 0]+"] : "+df.iloc[i, 1]+"-"+df.iloc[i, 2]+"-"+df.iloc[i, 3]+"-"+df.iloc[i, 4]+" "+"\n"+" "+"\n"
             data30.append(datashow)
         bot.sendMessage(chat_id=tele_chatid,text='[最近30天内发布消息]'+"\n"+"\n"+  "".join(data30))
     
@@ -73,6 +73,8 @@ MessageLoop(bot,handle).run_as_thread()
 # Keep the program running.
 time.sleep(3600)
 
+
+# In[ ]:
 
 
 
