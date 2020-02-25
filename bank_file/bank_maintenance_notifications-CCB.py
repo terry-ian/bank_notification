@@ -14,8 +14,6 @@ import pandas as pd
 import time
 from bank_mysql_function import *
 
-# 增加重连次数
-requests.adapters.DEFAULT_RETRIES = 5  
 #反爬虫用 模拟使用者
 send_headers = {
  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
@@ -33,7 +31,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     time=notice[item].select("span")[0].text
     urllink=domainname+notice[item].select("a")[0]["href"].replace("./", "")
     
-    resarticle=requests.get(urllink ,timeout = 1000  ,headers=send_headers)
+    resarticle=request_retry(urllink ,send_headers)
     resarticle.encoding='utf-8'
     souparticle=BeautifulSoup(resarticle.text,'html.parser')
     allcontent = " ".join(souparticle.find('div', {"class": "content f14"}).text.split())
@@ -47,11 +45,11 @@ def getNewsDetail(notice,domainname,item,bankname):
     return(result)
 
 
-# In[3]:
+# In[ ]:
 
 
 #数据抓取
-res=requests.get("http://www.ccb.com/cn/v3/include/notice/zxgg_1.html" ,timeout = 1000  ,headers=send_headers) 
+res=request_retry("http://www.ccb.com/cn/v3/include/notice/zxgg_1.html" ,send_headers) 
 res.encoding='utf-8'
 soup=BeautifulSoup(res.text,'html.parser')
 domainname="http://www.ccb.com/cn/v3/include/notice/"

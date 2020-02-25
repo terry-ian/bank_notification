@@ -16,24 +16,17 @@ import time
 import random
 from fake_useragent import UserAgent
 from bank_mysql_function import *
-ua = UserAgent() 
 
+ua = UserAgent() 
 #反爬虫用 模拟使用者
 send_headers = {
  "User-Agent": ua.random,
  "Connection": "close"
 }
-#random.choice(user_agent_list)
 
 
 # In[29]:
 
-
-def request_retry(url,send_headers):
-    for i in range(1, 10):
-        response = requests.get(url, headers=send_headers,timeout=1000)
-        if response.status_code == 200:
-            return response
 
 def getNewsDetail(notice,domainname,item,bankname):
     result={}

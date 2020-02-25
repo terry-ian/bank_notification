@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[5]:
 
 
 import requests
@@ -14,7 +14,6 @@ import pandas as pd
 import time
 from bank_mysql_function import *
 
-requests.adapters.DEFAULT_RETRIES = 5  # 增加重连次数
 #反爬虫用 模拟使用者
 send_headers = {
  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
@@ -23,7 +22,7 @@ send_headers = {
  "Accept-Language": "zh-CN,zh;q=0.8" }
 
 
-# In[2]:
+# In[6]:
 
 
 def getNewsDetail(notice,domainname,item,bankname):
@@ -32,7 +31,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     time=" ".join(notice[item].select(".details_rightD.fr")[0].text.split())
     urllink=domainname+notice[item].select("a")[0]["href"].replace("./", "PersonalServices/SvcBulletin/")
     
-    resarticle=requests.get(urllink ,timeout = 1000  ,headers=send_headers)
+    resarticle=request_retry(urllink,send_headers)
     resarticle.encoding='utf-8'
     souparticle=BeautifulSoup(resarticle.text,'html.parser')
     allcontent = " ".join(souparticle.find('div', {"class": "TRS_Editor"}).text.split())
@@ -46,11 +45,11 @@ def getNewsDetail(notice,domainname,item,bankname):
     return(result)
 
 
-# In[3]:
+# In[7]:
 
 
 #数据抓取
-res=requests.get("http://www.abchina.com/cn/PersonalServices/SvcBulletin/" ,timeout = 1000  ,headers=send_headers) 
+res=request_retry("http://www.abchina.com/cn/PersonalServices/SvcBulletin/" ,send_headers) 
 res.encoding='utf-8'
 soup=BeautifulSoup(res.text,'html.parser')
 domainname="http://www.abchina.com/cn/"

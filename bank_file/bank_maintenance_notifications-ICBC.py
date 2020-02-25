@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[4]:
 
 
 import requests
@@ -14,8 +14,6 @@ import pandas as pd
 import time
 from bank_mysql_function import *
 
-# 增加重连次数
-requests.adapters.DEFAULT_RETRIES = 5  
 #反爬虫用 模拟使用者
 send_headers = {
  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
@@ -24,7 +22,7 @@ send_headers = {
  "Accept-Language": "zh-CN,zh;q=0.8" }
 
 
-# In[2]:
+# In[5]:
 
 
 def getNewsDetail(notice,domainname,item,bankname):
@@ -33,7 +31,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     time=notice[item].select("span", {"class": "ChannelSummaryList-insty"})[2].text
     urllink=domainname+notice[item].select('.ChannelSummaryList-insty a')[0]['href']
     
-    resarticle=requests.get(urllink,timeout = 1000  ,headers=send_headers)
+    resarticle=request_retry(urllink,send_headers)
     resarticle.encoding='utf-8'
     souparticle=BeautifulSoup(resarticle.text,'html.parser')
     allcontent=" ".join(souparticle.find('span', {"id": "MyFreeTemplateUserControl"}).text.split())
@@ -43,16 +41,15 @@ def getNewsDetail(notice,domainname,item,bankname):
     result['time']=time.replace("年", "-").replace("月", "-").replace("日", "")
     result['urllink']=unquote(urllink,encoding="utf-8")
     result['allcontent']=allcontent
-    
-    #data = [title,author,time,urllink,allcontent]
+
     return(result)
 
 
-# In[3]:
+# In[ ]:
 
 
 #数据抓取
-res=requests.get("http://www.icbc.com.cn/icbc/%e9%87%8d%e8%a6%81%e5%85%ac%e5%91%8a/%e9%87%8d%e8%a6%81%e5%85%ac%e5%91%8a/default.htm" ,headers=send_headers)
+res=request_retry("http://www.icbc.com.cn/icbc/%e9%87%8d%e8%a6%81%e5%85%ac%e5%91%8a/%e9%87%8d%e8%a6%81%e5%85%ac%e5%91%8a/default.htm" ,send_headers)
 res.encoding='utf-8'
 soup=BeautifulSoup(res.text,'html.parser')
 domainname="http://www.icbc.com.cn"

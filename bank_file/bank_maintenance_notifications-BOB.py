@@ -15,9 +15,6 @@ import pandas as pd
 import time
 import random
 from bank_mysql_function import *
-
-# 增加重连次数
-requests.adapters.DEFAULT_RETRIES = 5  
 #反爬虫用 模拟使用者
 send_headers = {
  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
@@ -36,7 +33,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     time=notice[item].find('span',{"class": "li_right"}).text.split()[0]
     urllink=domainname+notice[item].select("a")[0]["href"]
     
-    resarticle=requests.get(urllink ,timeout = 1000  ,headers=send_headers)
+    resarticle=request_retry(urllink ,send_headers)
     resarticle.encoding='utf-8'
     souparticle=BeautifulSoup(resarticle.text,'html.parser')
     try:
@@ -58,7 +55,7 @@ def getNewsDetail(notice,domainname,item,bankname):
 
 
 #数据抓取
-res=requests.get("http://www.bankofbeijing.com.cn/about/gonggao.html" ,timeout = 1000  ,headers=send_headers) 
+res=request_retry("http://www.bankofbeijing.com.cn/about/gonggao.html" ,send_headers) 
 res.encoding='utf-8'
 soup=BeautifulSoup(res.text,'html.parser')
 domainname="http://www.bankofbeijing.com.cn"

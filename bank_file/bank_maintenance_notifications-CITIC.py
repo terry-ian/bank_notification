@@ -18,8 +18,7 @@ import random
 from fake_useragent import UserAgent
 from bank_mysql_function import *
 ua = UserAgent() 
-# 增加重连次数
-requests.adapters.DEFAULT_RETRIES = 5 
+
 #反爬虫用 模拟使用者
 send_headers = {
  "User-Agent": ua.random,
@@ -39,7 +38,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     time=notice[item].find("span").text
     urllink=domainname+notice[item].select("a")[0]["href"].replace("./", "")
     
-    resarticle=requests.get(urllink ,timeout = 1000  ,headers=send_headers)
+    resarticle=request_retry(urllink ,send_headers)
     resarticle.encoding='utf-8'
     souparticle=BeautifulSoup(resarticle.text,'html.parser')
     try:
@@ -58,11 +57,11 @@ def getNewsDetail(notice,domainname,item,bankname):
     return(result)
 
 
-# In[ ]:
+# In[3]:
 
 
 #数据抓取
-res=requests.get("http://www.citicbank.com/common/servicenotice/" ,timeout = 1000  ,headers=send_headers) 
+res=request_retry("http://www.citicbank.com/common/servicenotice/" ,send_headers) 
 res.encoding='utf-8'
 soup=BeautifulSoup(res.text,'html.parser')
 domainname="http://www.citicbank.com/common/servicenotice/"
