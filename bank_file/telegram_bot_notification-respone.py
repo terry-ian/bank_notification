@@ -47,14 +47,16 @@ def handle(msg):
             bot.sendMessage(chat_id=tele_chatid , text='请点选您要查询功能或银行', reply_markup=markup)
     
 def select_sql(bank):
+    today = datetime.date.today()
+    beforeday = today + datetime.timedelta(days=-7)
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database ,charset = 'utf8')
-    df = pd.read_sql("select * from "+db_table2+" where bank='"+bank+"' order by id desc limit 1", con=db)
-    value1=df.iloc[0, 5]
-    value2=df.iloc[0, 6]
-    value3=df.iloc[0, 7]
-    value4=df.iloc[0, 3]     #(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')  #时间加8小时 +datetime.timedelta(hours=8)
-    bot.sendMessage(chat_id=tele_chatid,text= '[银行名称] : '+value1+ "\n" +'[标题公告] : '+ value2 + "\n" +'[重要讯息] : '+value3+ "\n"+'[讯息网址] : ' +value4)
-
+    try:
+        df = pd.read_sql("select * from "+db_table2+" where bank='"+bank+"' and postdate  BETWEEN STR_TO_DATE('"+str(beforeday)+"','%Y-%m-%d') AND STR_TO_DATE('"+str(today)+"','%Y-%m-%d') order by id desc limit 1", con=db)
+        bot.sendMessage(chat_id=tele_chatid,text= '[银行名称] : '+df.iloc[0, 5]+ "\n" +'[标题公告] : '+ df.iloc[0, 6] + "\n" +'[重要讯息] : '+df.iloc[0, 7]+ "\n"+'[讯息网址] : ' +df.iloc[0, 3])
+    except:
+        bot.sendMessage(chat_id=tele_chatid,text="近期暂时没有维修公告")
+    db.close()
+    
 def list_sql():
     today = datetime.date.today()
     beforeday = today + datetime.timedelta(days=-30)
@@ -66,6 +68,7 @@ def list_sql():
             datashow=str(i+1)+". ["+df.iloc[i, 0]+"] : "+df.iloc[i, 1]+"-"+df.iloc[i, 2]+"-"+df.iloc[i, 3]+"-"+df.iloc[i, 4]+" "+"\n"+" "+"\n"
             data30.append(datashow)
         bot.sendMessage(chat_id=tele_chatid,text='[最近30天内发布消息]'+"\n"+"\n"+  "".join(data30))
+    db.close()
     
 # 给出回硬
 bot = telepot.Bot(token=tele_token)
