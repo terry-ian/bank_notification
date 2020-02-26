@@ -4,6 +4,7 @@ import pymysql
 import pandas as pd
 import re
 import requests 
+import time
 from bank_parameter import *
 
 #sql写入rowdata表格中语句
@@ -78,9 +79,15 @@ def notification_db(alldata,noticelen,bankname):
         if len(lastdatawarning) ==0:
             sql_notification(allwarningdata[i]['url'],allwarningdata[i]['postdate'],allwarningdata[i]['bank'],allwarningdata[i]['title'],allwarningdata[i]['notes'],0)
 
-#重複請求直到回傳正確  請求次數10次
+#重複請求直到回傳正確  請求次數5次
 def request_retry(url,send_headers):
-    for i in range(1, 10):
-        response = requests.get(url, headers=send_headers,timeout=100)
-        if response.status_code == 200:
-            return response
+    for i in range(1, 5):
+        try:
+            response = requests.get(url, headers=send_headers,timeout=1000)
+            if response.status_code == 200:
+                return response
+        except:
+            print("被拒绝连线")
+            time.sleep(5)
+
+        
