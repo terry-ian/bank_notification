@@ -28,6 +28,12 @@ df = pd.read_sql(sql_select, con=db)
 tasknumber=len(df)
 if tasknumber == 0 :
     time.sleep(5)
+elif tasknumber > 20:
+    for i in range(tasknumber): 
+        my_cousor = db.cursor()   
+        my_cousor.execute( "UPDATE "+db_table2+" SET status = 1  WHERE id = " + str(df.iloc[i, 0]) )
+        db.commit()
+        my_cousor.close() #关闭游标
 else :
     for i in range(tasknumber): 
         #传送至 telegram 群内
@@ -41,7 +47,7 @@ else :
         my_cousor.execute( "UPDATE "+db_table2+" SET status = 1  WHERE id = " + str(df.iloc[i, 0]) )
         db.commit()
         my_cousor.close() #关闭游标
-        if i%10 == 9 : time.sleep(20)        
+        if i%10 == 5 : time.sleep(20)        
 db.close()    #关闭连接
 
 
