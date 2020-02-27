@@ -1,16 +1,16 @@
 #手动设置参数文件
 
 #mysql_parameter
-db_host='sql12.freesqldatabase.com'
-db_user='sql12323730'
-db_passwd='smdt6QLppJ'
+db_host='localhost'
+db_user='root'
+db_passwd='1qazxsw2'
 db_port=3306
-db_database='sql12323730'
+db_database='bi_notice'
 db_table1='bank_webcrawler'
 db_table2='bank_notification'
 
 #telegram_parameter group
-tele_chatid='-340019778'
+tele_chatid='-338129812'         #测试 -338129812   #正式 -340019778 
 tele_token='1020859504:AAEb-tLbaBjJvJqBsLCzCsStrgTlZNqXRR8'
 
 #warning message 
