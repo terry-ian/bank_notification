@@ -28,7 +28,7 @@ df = pd.read_sql(sql_select, con=db)
 tasknumber=len(df)
 if tasknumber == 0 :
     time.sleep(5)
-elif tasknumber > 20:
+elif tasknumber > 6:
     for i in range(tasknumber): 
         my_cousor = db.cursor()   
         my_cousor.execute( "UPDATE "+db_table2+" SET status = 1  WHERE id = " + str(df.iloc[i, 0]) )
