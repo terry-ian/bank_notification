@@ -48,7 +48,7 @@ def handle(msg):
     
 def select_sql(bank):
     today = datetime.date.today()
-    beforeday = today + datetime.timedelta(days=-7)
+    beforeday = today + datetime.timedelta(days=-5)
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database ,charset = 'utf8')
     try:
         df = pd.read_sql("select * from "+db_table2+" where bank='"+bank+"' and postdate  BETWEEN STR_TO_DATE('"+str(beforeday)+"','%Y-%m-%d') AND STR_TO_DATE('"+str(today)+"','%Y-%m-%d') order by id desc limit 1", con=db)
@@ -61,7 +61,7 @@ def list_sql():
     today = datetime.date.today()
     beforeday = today + datetime.timedelta(days=-30)
     db = pymysql.Connect(host=db_host,user=db_user,passwd=db_passwd,port=db_port,database=db_database ,charset = 'utf8')
-    df = pd.read_sql("select postdate,bank,title,notes,url from "+db_table2+" where postdate  BETWEEN STR_TO_DATE('"+str(beforeday)+"','%Y-%m-%d') AND STR_TO_DATE('"+str(today)+"','%Y-%m-%d')", con=db)
+    df = pd.read_sql("select postdate,bank,title,notes,url from "+db_table2+" where postdate  BETWEEN STR_TO_DATE('"+str(beforeday)+"','%Y-%m-%d') AND STR_TO_DATE('"+str(today)+"','%Y-%m-%d') order by postdate desc", con=db)
     if len(df)>0:
         data30=[]
         for i in range(len(df)):
@@ -74,7 +74,7 @@ def list_sql():
 bot = telepot.Bot(token=tele_token)
 MessageLoop(bot,handle).run_as_thread()
 # Keep the program running.
-time.sleep(3600)
+time.sleep(3599)
 
 
 # In[ ]:
