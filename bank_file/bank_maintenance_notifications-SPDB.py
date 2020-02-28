@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[15]:
+# In[1]:
 
 
 import requests
@@ -16,21 +16,13 @@ from urllib.parse import unquote
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bank_mysql_function import *    #sql帳密更改
-
-#代理
-#from fake_useragent import UserAgent
-#ua = UserAgent()
-#ua.random
+from fake_useragent import UserAgent
 
 #反爬虫用 模拟使用者
-send_headers = {
- "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
- "Connection": "keep-alive",
- "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
- "Accept-Language": "zh-CN,zh;q=0.8" }
+ua = UserAgent() 
 
 
-# In[16]:
+# In[2]:
 
 
 def getNewsDetail(notice,domainname,item,bankname):
@@ -60,7 +52,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     return(result)
 
 
-# In[17]:
+# In[4]:
 
 
 chrome_options = Options()
@@ -72,8 +64,8 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('blink-settings=imagesEnabled=false') #不加载图片, 提升速度
 chrome_options.add_argument('--headless')                        #浏览器不提供可视化页面. linux下如果系统不支持可视化不加这条会启动失败
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
-chrome_options.add_argument("user-agent=" + user_agent)
-browser = webdriver.Chrome(chrome_options=chrome_options)
+chrome_options.add_argument("user-agent=" + ua.random )
+browser = webdriver.Chrome(options=chrome_options)
 #browser.set_page_load_timeout(60)
 browser.get('https://www.spdb.com.cn/home/sygg/')  #browser.implicitly_wait(10)
 time.sleep(10) 
@@ -96,6 +88,8 @@ rowdata_db(alldata,noticelen,"浦发银行")
 #存取警示数据
 notification_db(alldata,noticelen,"浦发银行")
 
+
+# In[ ]:
 
 
 
