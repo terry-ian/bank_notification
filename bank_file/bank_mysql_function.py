@@ -55,10 +55,9 @@ def rowdata_db(alldata,noticelen,bankname):
 def notification_db(alldata,noticelen,bankname):
     #文字处理
     allwarningdata=[]
-    checktitletext=["维护","暂停","升级"] ; checkcontenttext=["将于","约于","定于","计划于","将在","具体时间为","拟于"] #title 关键字 ,content 关键字
-    checkcontentspecifictext=["网上银行","手机银行","企业银行","个人网银"]
+    checktitletext=["维护","暂停","升级","网上银行","手机银行","企业银行","个人网银"] ; checkcontenttext=["将于","约于","定于","计划于","将在","具体时间为","拟于"] #title 关键字 ,content 关键字
     for check in range(noticelen):
-        if any(re.findall('|'.join(checktitletext), alldata[check]['title'])) or any(re.findall('|'.join(checkcontentspecifictext), alldata[check]['title'])):
+        if any(re.findall('|'.join(checktitletext), alldata[check]['title'])) :
             warningdata={}
             if len(re.findall('|'.join(checkcontenttext), alldata[check]['allcontent'])) == 0:
                 noticetext="请查询详细内文"
