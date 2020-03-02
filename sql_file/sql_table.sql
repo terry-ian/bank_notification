@@ -1,10 +1,8 @@
+set global max_allowed_packet = 2*1024*1024*10 ;
+
 drop database if exists bi_notice;
 
 create database bi_notice;
-
-set global max_allowed_packet = 2*1024*1024*10 ;
-
-SET GLOBAL innodb_buffer_pool_size= 1024*20 ;
 
 use bi_notice;
 
