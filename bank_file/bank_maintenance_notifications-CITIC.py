@@ -46,7 +46,7 @@ def getNewsDetail(notice,domainname,item,bankname):
         allcontent = " ".join(souparticle.find('div', {"class": "main_content"}).text.split())
         if len(allcontent)==0 :allcontent="请查询详细内文" 
     except: 
-        allcontent ="请洽内文"
+        allcontent ="请查询详细内文"
  
     result['bank']=bankname
     result['title']=title

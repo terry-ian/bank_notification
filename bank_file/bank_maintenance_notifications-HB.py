@@ -39,7 +39,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     try:
         allcontent = " ".join(souparticle.find('div', {"class": "Details_main_main"}).text.split())
     except: 
-        allcontent ="请洽内文"
+        allcontent ="请查询详细内文"
 
     result['bank']=bankname
     result['title']=title
@@ -50,7 +50,7 @@ def getNewsDetail(notice,domainname,item,bankname):
     return(result)
 
 
-# In[ ]:
+# In[3]:
 
 
 #数据抓取
