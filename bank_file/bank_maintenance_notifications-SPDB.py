@@ -19,7 +19,7 @@ from bank_mysql_function import *    #sql帳密更改
 from fake_useragent import UserAgent
 
 #反爬虫用 模拟使用者
-ua = UserAgent() 
+#ua = UserAgent() 
 
 
 # In[9]:
@@ -63,8 +63,9 @@ chrome_options.add_argument('blink-settings=imagesEnabled=false') #不加载图�
 chrome_options.add_argument('--disable-extensions')
 chrome_options.add_argument('user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15"')
 chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--headless')                        #浏览器不提供可视化页面. linux下如果系统不支持可视化不加这条会启动失败
-browser = webdriver.Chrome(chrome_options=chrome_options)   #browser.set_page_load_timeout(60)
+chrome_options.add_argument('--headless')                   #浏览器不提供可视化页面. linux下如果系统不支持可视化不加这条会启动失败
+browser = webdriver.Chrome(chrome_options=chrome_options)   
+browser.set_page_load_timeout(500)
 browser.get('https://www.spdb.com.cn/home/sygg/') 
 browser.implicitly_wait(20)
 time.sleep(2) 
