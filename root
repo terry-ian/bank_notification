@@ -1,0 +1,8 @@
+
+50 0,7 * * *  python3 /root/bank_notification/bank_file/bank_allfile_run.py > "/root/bank_notification/bank_system_log/bank_allfile_run-$(date +"\%Y-\%m-\%d-\%H").log" 2>&1 &
+
+10 * * * *  python3 /root/bank_notification/bank_file/telegram_bot_notification-respone.py &
+
+
+
+
