@@ -1,0 +1,8 @@
+# 排程设置
+
+#主程式每天早上8:50 和 下午15:50 开始执行
+50 8,15 * * *  python3 /root/bank_notification/bank_file/bank_allfile_run.py > "/root/bank_notification/bank_system_log/bank_allfile_run-$(date +"\%Y-\%m-\%d-\%H").log" 2>&1 &
+
+#telegram 每小时刷新 (释放记忆体)
+10 * * * *  python3 /root/bank_notification/bank_file/telegram_bot_notification-respone.py &
+
