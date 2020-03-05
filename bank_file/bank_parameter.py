@@ -1,7 +1,7 @@
 #手动设置参数文件
 
 #mysql_parameter
-db_host='35.202.66.18'
+db_host='localhost'
 db_user='root'
 db_passwd='1qazxsw2'
 db_port=3306
