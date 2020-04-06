@@ -33,10 +33,10 @@ def getNewsDetail(notice,domainname,item,bankname):
     time=notice[item].find('span',{"class": "time"}).text.split()[0]
     urllink=domainname+notice[item].select("a")[0]["href"]
     
-    resarticle=request_retry(urllink ,send_headers)
-    resarticle.encoding='utf-8'
-    souparticle=BeautifulSoup(resarticle.text,'html.parser')
     try:
+        resarticle=request_retry(urllink ,send_headers)
+        resarticle.encoding='utf-8'
+        souparticle=BeautifulSoup(resarticle.text,'html.parser')
         allcontent = " ".join(souparticle.find('div', {"class": "middle"}).text.split())
     except: 
         allcontent ="请洽内文"
