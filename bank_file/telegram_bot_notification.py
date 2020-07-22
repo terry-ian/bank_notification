@@ -42,7 +42,7 @@ else :
         value2=df.iloc[i, 6]
         value3=df.iloc[i, 7]
         value4=df.iloc[i, 3] #(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')  #时间加8小时 +datetime.timedelta(hours=8)
-        bot.sendMessage(chat_id=tele_chatid,text='★   最新公告   ★'  + "\n" + '[银行名称] : '+value1+ "\n" +'[标题公告] : '+ value2 + "\n" +'[重要讯息] : '+value3+ "\n"+'[讯息网址] : ' +value4)
+        bot.sendMessage(chat_id=tele_chatid[0],text='★   最新公告   ★'  + "\n" + '[银行名称] : '+value1+ "\n" +'[标题公告] : '+ value2 + "\n" +'[重要讯息] : '+value3+ "\n"+'[讯息网址] : ' +value4)
         my_cousor = db.cursor()   
         my_cousor.execute( "UPDATE "+db_table2+" SET status = 1  WHERE id = " + str(df.iloc[i, 0]) )
         db.commit()
