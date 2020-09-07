@@ -69,6 +69,8 @@ for i in range(noticelen):
     alldata.append(datanews)
     time.sleep(2)
 
+noticelen=len(alldata)
+    
 #存取原始数据
 rowdata_db(alldata,noticelen,"交通银行")
 #存取警示数据
