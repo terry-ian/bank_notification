@@ -66,7 +66,7 @@ alldata=[]
 for i in range(noticelen):
     datanews=getNewsDetail(notice,domainname,i,"内蒙古银行")
     alldata.append(datanews)
-    time.sleep(2)
+    time.sleep(8)
 
 #存取原始数据
 rowdata_db(alldata,noticelen,"内蒙古银行")
