@@ -62,7 +62,10 @@ noticelen = len(notice)
 
 alldata=[]
 for i in range(noticelen):
-    datanews=getNewsDetail(notice,domainname,i,"交通银行")
+    try:
+        datanews=getNewsDetail(notice,domainname,i,"交通银行")
+    except: 
+        continue
     alldata.append(datanews)
     time.sleep(2)
 
